@@ -1,5 +1,5 @@
 theory Naive
-  imports Common "HOL-Library.Sublist"
+  imports Common 
 begin
 
 fun is_prefix :: "'a list \<Rightarrow> 'a list \<Rightarrow> bool" where
@@ -18,9 +18,6 @@ fun naive_search ::  "'a list \<Rightarrow> 'a list \<Rightarrow> nat list" wher
 
 value "naive_search ''hello'' ''hello world hello'' = [0, 12]"
 value "naive_search ''a'' ''aba'' = [0, 2]"
-
-lemma is_prefix_correct: "is_prefix needle hay = prefix needle hay"
-  by (induction hay rule: is_prefix.induct) auto
 
 lemma is_prefix_substring_at: "is_prefix needle hay = sublist_at needle hay 0"
   by (induction hay rule: is_prefix.induct) auto
